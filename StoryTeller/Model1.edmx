@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StoryTellerDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Animals">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pirates">
+          <Key>
+            <PropertyRef Name="PirateID" />
+          </Key>
+          <Property Name="PirateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Princesses">
+          <Key>
+            <PropertyRef Name="PrincessID" />
+          </Key>
+          <Property Name="PrincessID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Themes">
+          <Key>
+            <PropertyRef Name="ThemeID" />
+          </Key>
+          <Property Name="ThemeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PirateID" Type="int" />
+          <Property Name="PrincessID" Type="int" />
+          <Property Name="AnimalID" Type="int" />
+        </EntityType>
+        <EntityType Name="Writers">
+          <Key>
+            <PropertyRef Name="WriterID" />
+          </Key>
+          <Property Name="WriterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="NumberOfCont" Type="int" />
+        </EntityType>
+        <Association Name="FK_Themes_Animals">
+          <End Role="Animals" Type="Self.Animals" Multiplicity="0..1" />
+          <End Role="Themes" Type="Self.Themes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animals">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="Themes">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Themes_Pirates">
+          <End Role="Pirates" Type="Self.Pirates" Multiplicity="0..1" />
+          <End Role="Themes" Type="Self.Themes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pirates">
+              <PropertyRef Name="PirateID" />
+            </Principal>
+            <Dependent Role="Themes">
+              <PropertyRef Name="PirateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Themes_Princesses">
+          <End Role="Princesses" Type="Self.Princesses" Multiplicity="0..1" />
+          <End Role="Themes" Type="Self.Themes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Princesses">
+              <PropertyRef Name="PrincessID" />
+            </Principal>
+            <Dependent Role="Themes">
+              <PropertyRef Name="PrincessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoryTellerDBModelStoreContainer">
+          <EntitySet Name="Animals" EntityType="Self.Animals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pirates" EntityType="Self.Pirates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Princesses" EntityType="Self.Princesses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Themes" EntityType="Self.Themes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Writers" EntityType="Self.Writers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Themes_Animals" Association="Self.FK_Themes_Animals">
+            <End Role="Animals" EntitySet="Animals" />
+            <End Role="Themes" EntitySet="Themes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Themes_Pirates" Association="Self.FK_Themes_Pirates">
+            <End Role="Pirates" EntitySet="Pirates" />
+            <End Role="Themes" EntitySet="Themes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Themes_Princesses" Association="Self.FK_Themes_Princesses">
+            <End Role="Princesses" EntitySet="Princesses" />
+            <End Role="Themes" EntitySet="Themes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoryTellerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Themes" Relationship="Self.FK_Themes_Animals" FromRole="Animals" ToRole="Themes" />
+        </EntityType>
+        <EntityType Name="Pirate">
+          <Key>
+            <PropertyRef Name="PirateID" />
+          </Key>
+          <Property Name="PirateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Themes" Relationship="Self.FK_Themes_Pirates" FromRole="Pirates" ToRole="Themes" />
+        </EntityType>
+        <EntityType Name="Princesse">
+          <Key>
+            <PropertyRef Name="PrincessID" />
+          </Key>
+          <Property Name="PrincessID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Themes" Relationship="Self.FK_Themes_Princesses" FromRole="Princesses" ToRole="Themes" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Theme">
+          <Key>
+            <PropertyRef Name="ThemeID" />
+          </Key>
+          <Property Name="ThemeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PirateID" Type="Int32" />
+          <Property Name="PrincessID" Type="Int32" />
+          <Property Name="AnimalID" Type="Int32" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Themes_Animals" FromRole="Themes" ToRole="Animals" />
+          <NavigationProperty Name="Pirate" Relationship="Self.FK_Themes_Pirates" FromRole="Themes" ToRole="Pirates" />
+          <NavigationProperty Name="Princesse" Relationship="Self.FK_Themes_Princesses" FromRole="Themes" ToRole="Princesses" />
+        </EntityType>
+        <EntityType Name="Writer">
+          <Key>
+            <PropertyRef Name="WriterID" />
+          </Key>
+          <Property Name="WriterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="NumberOfCont" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Themes_Animals">
+          <End Role="Animals" Type="Self.Animal" Multiplicity="0..1" />
+          <End Role="Themes" Type="Self.Theme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animals">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="Themes">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Themes_Pirates">
+          <End Role="Pirates" Type="Self.Pirate" Multiplicity="0..1" />
+          <End Role="Themes" Type="Self.Theme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pirates">
+              <PropertyRef Name="PirateID" />
+            </Principal>
+            <Dependent Role="Themes">
+              <PropertyRef Name="PirateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Themes_Princesses">
+          <End Role="Princesses" Type="Self.Princesse" Multiplicity="0..1" />
+          <End Role="Themes" Type="Self.Theme" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Princesses">
+              <PropertyRef Name="PrincessID" />
+            </Principal>
+            <Dependent Role="Themes">
+              <PropertyRef Name="PrincessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StoryTellerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animals" EntityType="Self.Animal" />
+          <EntitySet Name="Pirates" EntityType="Self.Pirate" />
+          <EntitySet Name="Princesses" EntityType="Self.Princesse" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Themes" EntityType="Self.Theme" />
+          <EntitySet Name="Writers" EntityType="Self.Writer" />
+          <AssociationSet Name="FK_Themes_Animals" Association="Self.FK_Themes_Animals">
+            <End Role="Animals" EntitySet="Animals" />
+            <End Role="Themes" EntitySet="Themes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Themes_Pirates" Association="Self.FK_Themes_Pirates">
+            <End Role="Pirates" EntitySet="Pirates" />
+            <End Role="Themes" EntitySet="Themes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Themes_Princesses" Association="Self.FK_Themes_Princesses">
+            <End Role="Princesses" EntitySet="Princesses" />
+            <End Role="Themes" EntitySet="Themes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoryTellerDBModelStoreContainer" CdmEntityContainer="StoryTellerDBEntities">
+          <EntitySetMapping Name="Animals">
+            <EntityTypeMapping TypeName="StoryTellerDBModel.Animal">
+              <MappingFragment StoreEntitySet="Animals">
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pirates">
+            <EntityTypeMapping TypeName="StoryTellerDBModel.Pirate">
+              <MappingFragment StoreEntitySet="Pirates">
+                <ScalarProperty Name="PirateID" ColumnName="PirateID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Princesses">
+            <EntityTypeMapping TypeName="StoryTellerDBModel.Princesse">
+              <MappingFragment StoreEntitySet="Princesses">
+                <ScalarProperty Name="PrincessID" ColumnName="PrincessID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StoryTellerDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Themes">
+            <EntityTypeMapping TypeName="StoryTellerDBModel.Theme">
+              <MappingFragment StoreEntitySet="Themes">
+                <ScalarProperty Name="ThemeID" ColumnName="ThemeID" />
+                <ScalarProperty Name="PirateID" ColumnName="PirateID" />
+                <ScalarProperty Name="PrincessID" ColumnName="PrincessID" />
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Writers">
+            <EntityTypeMapping TypeName="StoryTellerDBModel.Writer">
+              <MappingFragment StoreEntitySet="Writers">
+                <ScalarProperty Name="WriterID" ColumnName="WriterID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="NumberOfCont" ColumnName="NumberOfCont" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
