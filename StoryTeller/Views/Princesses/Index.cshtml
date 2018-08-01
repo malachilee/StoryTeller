@@ -14,20 +14,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Text)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PrincessID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PrincessID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PrincessID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PrincessID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PrincessID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PrincessID })
+            </td>
+        </tr>
+    }
 
 </table>
-<p>
-    @{ Html.RenderPartial("Create", new Princesse()); } 
-</p>
+@{
+    int counter = 0;
+    foreach (var item in Model)
+    {
+        counter++;
+    }
+}
+
+@if (counter < 10)
+{
+    <p>
+        @{ Html.RenderPartial("Create", new Princesse()); }
+    </p>
+}

@@ -30,6 +30,17 @@
     }
 
 </table>
-<p>
-    @{ Html.RenderPartial("Create", new Pirate()); }
-</p>
+@{
+    int counter = 0;
+    foreach (var item in Model)
+    {
+        counter++;
+    }
+}
+
+@if (counter < 10)
+{
+    <p>
+        @{ Html.RenderPartial("Create", new Pirate()); }
+    </p>
+}
