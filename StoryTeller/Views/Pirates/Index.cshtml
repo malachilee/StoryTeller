@@ -6,9 +6,7 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -17,17 +15,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Text)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PirateID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PirateID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PirateID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PirateID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PirateID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PirateID })
+            </td>
+        </tr>
+    }
 
 </table>
+<p>
+    @{ Html.RenderPartial("Create", new Pirate()); }
+</p>

@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -31,3 +28,6 @@
 }
 
 </table>
+<p>
+    @{ Html.RenderPartial("Create", new Princesse()); } 
+</p>
