@@ -30,11 +30,16 @@
     }
 
 </table>
+<<<<<<< HEAD
+=======
+
+>>>>>>> bc3026cad0068beeffb2554957f3e9a71d474819
 @{
     int counter = 0;
     foreach (var item in Model)
     {
         counter++;
+<<<<<<< HEAD
         //counts the items in the list
     }
 }
@@ -43,10 +48,16 @@
     <div> This is the final post, please wrap up the story!</div>
     //warns the user about the final post
 }
+=======
+    }
+}
+
+>>>>>>> bc3026cad0068beeffb2554957f3e9a71d474819
 @if (counter < 10)
 {
     <p>
         @{ Html.RenderPartial("Create", new Animal()); }
+<<<<<<< HEAD
         @* This takes away the text box and create button after the tenth post *@
     </p>
 }
@@ -55,3 +66,7 @@ else
     @Html.ActionLink("New Story", "index", "Themes")
     //Replaces create area with themes action link
 }
+=======
+    </p>
+}
+>>>>>>> bc3026cad0068beeffb2554957f3e9a71d474819
