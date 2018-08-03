@@ -10,6 +10,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Text)
+            @Html.DisplayNameFor(model => model.Author)
         </th>
         <th></th>
     </tr>
@@ -19,6 +20,7 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Text)
+                @Html.DisplayFor(modelItem => item.Author)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PrincessID }) |

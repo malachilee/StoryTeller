@@ -12,19 +12,18 @@ namespace StoryTeller
     using System;
     using System.Collections.Generic;
     
-    public partial class Princesse
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Princesse()
+        public AspNetRole()
         {
-            this.Themes = new HashSet<Theme>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
-        public int PrincessID { get; set; }
-        public string Text { get; set; }
-        public string Author { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Theme> Themes { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

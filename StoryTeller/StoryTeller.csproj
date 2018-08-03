@@ -196,6 +196,18 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -204,6 +216,9 @@
     <Compile Include="Controllers\PrincessesController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />
     <Compile Include="Controllers\WritersController.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

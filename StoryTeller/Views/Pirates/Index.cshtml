@@ -9,6 +9,7 @@
         @foreach (var item in Model)
         {
             @Html.DisplayFor(modelItem => item.Text)<br />
+            Html.DisplayFor(modelItem => item.Author);
 
             @*<p>  @Html.ActionLink("Edit", "Edit", new { id = item.PirateID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.PirateID }) |
