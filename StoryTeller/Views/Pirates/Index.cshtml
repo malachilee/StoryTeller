@@ -6,6 +6,9 @@
 
 <div class="container">
     <div class="pirateEntries">
+
+
+
         @foreach (var item in Model)
         {
             @Html.DisplayFor(modelItem => item.Text)<br />
@@ -40,6 +43,6 @@
 }
 else
 {
-    @Html.ActionLink("New Story", "index", "Themes")
+    @Html.ActionLink("New Story", "create", "Pirates")
     //Replaces create area with themes action link
 }

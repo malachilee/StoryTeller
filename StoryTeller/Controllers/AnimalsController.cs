@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StoryTeller;
+using StoryTeller.Models;
 
 namespace StoryTeller.Controllers
 {
@@ -46,7 +47,7 @@ namespace StoryTeller.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AnimalID,Text")] Animal animal)
+        public ActionResult Create([Bind(Include = "AnimalID,Text,UserInput")] Animal animal)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +71,10 @@ namespace StoryTeller.Controllers
             {
                 return HttpNotFound();
             }
-            return View(animal);
+            var avw = new AnimalViewModel();
+            avw.AnimalID = animal.AnimalID;
+            avw.Text = animal.Text;
+            return View(avw);
         }
 
         // POST: Animals/Edit/5
@@ -78,15 +82,19 @@ namespace StoryTeller.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AnimalID,Text")] Animal animal)
+        public ActionResult Edit([Bind(Include = "AnimalID,Text,UserInput")] AnimalViewModel avw)
         {
+            Animal animal = db.Animals.Find(avw.AnimalID);
+            animal.AnimalID = avw.AnimalID;
+            animal.Text += "\n \n" + avw.UserInput;
+
             if (ModelState.IsValid)
             {
                 db.Entry(animal).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(animal);
+            return View(animal.Text);
         }
 
         // GET: Animals/Delete/5
