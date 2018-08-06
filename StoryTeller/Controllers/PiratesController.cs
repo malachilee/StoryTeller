@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StoryTeller;
+using Microsoft.AspNet.Identity;
 
 namespace StoryTeller.Controllers
 {
@@ -48,8 +49,12 @@ namespace StoryTeller.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PirateID,Text")] Pirate pirate)
         {
+            var username = HttpContext.User.Identity.GetUserName();
+
             if (ModelState.IsValid)
             {
+                pirate.Author = username;
+                    
                 db.Pirates.Add(pirate);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -122,6 +127,6 @@ namespace StoryTeller.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }      
     }
 }

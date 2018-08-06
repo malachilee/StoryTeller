@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StoryTeller;
+using Microsoft.AspNet.Identity;
+
 
 namespace StoryTeller.Controllers
 {
@@ -48,8 +50,11 @@ namespace StoryTeller.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PrincessID,Text")] Princesse princesse)
         {
+            var username = HttpContext.User.Identity.GetUserName();
             if (ModelState.IsValid)
             {
+                princesse.Author = username;
+
                 db.Princesses.Add(princesse);
                 db.SaveChanges();
                 return RedirectToAction("Index");

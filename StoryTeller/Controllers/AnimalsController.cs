@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StoryTeller;
+using Microsoft.AspNet.Identity;
 
 namespace StoryTeller.Controllers
 {
@@ -80,8 +81,13 @@ namespace StoryTeller.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AnimalID,Text")] Animal animal)
         {
+            var username = HttpContext.User.Identity.GetUserName();
+
+
             if (ModelState.IsValid)
             {
+                animal.Author = username;
+
                 db.Entry(animal).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -123,5 +129,9 @@ namespace StoryTeller.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
+
 }
+

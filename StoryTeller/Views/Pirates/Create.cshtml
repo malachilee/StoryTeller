@@ -1,4 +1,6 @@
 ﻿@model StoryTeller.Pirate
+@using Microsoft.AspNet.Identity;
+
 
 @{
     ViewBag.Title = "Create";
@@ -10,7 +12,7 @@
 @using (Html.BeginForm("Create", "Pirates"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Pirate</h4>
         <hr />
