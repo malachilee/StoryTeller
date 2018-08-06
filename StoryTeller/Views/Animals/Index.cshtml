@@ -4,15 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>*@
 
 
 <table class="table">
     <tr>
-        <th>
+        <h>
             @Html.DisplayNameFor(model => model.Text)
             @Html.DisplayNameFor(model => model.Author)
-        </th>
+        </h>
         <th></th>
     </tr>
 
@@ -44,26 +44,19 @@
 }
 @if (counter == 9)
 {
-    <div> This is the final post, please wrap up the story!</div>
+    <p> This is the final post, please wrap up the story!</p>
     //warns the user about the final post
 }
-
-   
-
-
 
 @if (counter < 10)
 {
     <p>
         @{ Html.RenderPartial("Create", new Animal()); }
-
         @* This takes away the text box and create button after the tenth post *@
     </p>
 }
 else
 {
-    @Html.ActionLink("New Story", "index", "Themes")
+    @Html.ActionLink("New Story", "index", "Home"@*"Themes"*@)
     //Replaces create area with themes action link
 }
-
-    
