@@ -241,6 +241,8 @@
     <Compile Include="Models\AnimalViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PirateViewModel.cs" />
+    <Compile Include="Models\PrincessViewModel.cs" />
     <Compile Include="Pirate.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

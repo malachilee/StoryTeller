@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using StoryTeller;
 using Microsoft.AspNet.Identity;
+using StoryTeller.Models;
 
 namespace StoryTeller.Controllers
 {
@@ -91,7 +92,10 @@ namespace StoryTeller.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(pirate);
+            var pivw = new PirateViewModel();
+            pivw.PirateID = pirate.PirateID;
+            pivw.Text = pirate.Text;
+            return View(pivw);
         }
 
         // GET: Pirates/Delete/5

@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using StoryTeller;
 using Microsoft.AspNet.Identity;
-
+using StoryTeller.Models;
 
 namespace StoryTeller.Controllers
 {
@@ -91,7 +91,10 @@ namespace StoryTeller.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(princesse);
+            var prvw = new PrincessViewModel();
+            prvw.PrincessID = princesse.PrincessID;
+            prvw.Text = princesse.Text;
+            return View(prvw);
         }
 
         // GET: Princesses/Delete/5
